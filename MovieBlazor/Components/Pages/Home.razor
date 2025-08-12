@@ -23,6 +23,13 @@
                         <p class="card-text">@movie.Genre?.Name</p>
                         <p class="card-text">@movie.Price.ToString("C")</p>
                         <p class="card-text">@movie.ReleaseDate</p>
+                        <a class="btn btn-info" role="button" href="@MovieUrl(movie.Id)">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="@GetDeleteModalId(movie)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                        <DeleteMovie Movie="@movie" />
                     </div>
                 </div>
             }
@@ -36,6 +43,13 @@
     protected override async Task OnInitializedAsync()
     {
         movies = await Client.GetMoviesAsync();
+    }
+
+    private static string MovieUrl(int id) => $"addeditMovie/{id}";
+
+    private string GetDeleteModalId(Movie movie)
+    {
+        return $"#{DeleteMovie.GetModalId(movie)}";
     }
 
 }

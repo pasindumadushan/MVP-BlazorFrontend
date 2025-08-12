@@ -11,5 +11,12 @@ namespace MovieBlazor.Clients
 
         // add a new movie
         public async Task AddMovieAsync(Movie movie) => await httpClient.PostAsJsonAsync("movies", movie);
+
+        // update a movie
+        public async Task UpdateMovieAsync(Movie updatedMovie) => await httpClient.PutAsJsonAsync($"movies/{updatedMovie.Id}", updatedMovie);
+
+        // delete a movie
+        public async Task DeleteMovieAsync(int id) => await httpClient.DeleteAsync($"movies/{id}");
+
     }
 }

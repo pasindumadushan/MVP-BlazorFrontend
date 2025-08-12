@@ -99,7 +99,7 @@ else
         else
         {
             movie.Id = Id.Value;
-            //await MoviesClient.UpdateMovieAsync(Movie);
+            await MoviesClient.UpdateMovieAsync(movie);
         }
         NavigationManager.NavigateTo("/"); 
     }
